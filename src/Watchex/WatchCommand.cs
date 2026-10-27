@@ -10,7 +10,7 @@ namespace Watchex;
 
 internal class WatchCommand : Command<WatchCommandSettings>
 {
-  public override int Execute([NotNull] CommandContext context, [NotNull] WatchCommandSettings settings)
+  public override int Execute([NotNull] CommandContext context, [NotNull] WatchCommandSettings settings, CancellationToken cancellationToken)
   {
     if (settings.PrintVersion)
     {
