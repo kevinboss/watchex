@@ -6,6 +6,14 @@ permissions:
 on:
   release:
     types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag to build and publish (e.g. v1.0.6)
+        required: true
+
+env:
+  TAG: ${{ github.event.release.tag_name || inputs.tag }}
 
 jobs:
   release:
@@ -24,6 +32,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TAG }}
 
       - name: Setup dotnet
         uses: actions/setup-dotnet@v4
@@ -34,7 +44,7 @@ jobs:
         shell: bash
         id: build-data
         run: |
-          tag=$(git describe --tags --abbrev=0)
+          tag="$TAG"
           echo "tag=$tag" >> $GITHUB_OUTPUT
           echo "version=${tag:1}" >> $GITHUB_OUTPUT
           echo "release_name=watchex-$tag-${{ matrix.target }}" >> $GITHUB_OUTPUT
@@ -65,6 +75,24 @@ jobs:
       - name: Publish
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ env.TAG }}
           files: "watchex*"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  winget:
+    name: WinGet
+    needs: release
+    runs-on: windows-latest
+    steps:
+      - name: Publish watchex to WinGet
+        # Tracking @main: the @v2 tag misses the fix in 19e706d ("pwsh doesn't
+        # sort sometimes") which makes max-versions-to-keep delete the newest
+        # versions instead of the oldest.
+        uses: vedantmgoyal2009/winget-releaser@main
+        with:
+          identifier: francWhite.watchex
+          installers-regex: '\.zip$'
+          release-tag: ${{ env.TAG }}
+          max-versions-to-keep: 5
+          token: ${{ secrets.WINGET_TOKEN }}
