@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AssemblyName>watchex</AssemblyName>
@@ -17,10 +17,10 @@
 
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Build" Version="17.11.4" ExcludeAssets="runtime"/>
-    <PackageReference Include="Microsoft.Build.Locator" Version="1.7.8"/>
-    <PackageReference Include="Spectre.Console.Cli" Version="0.49.1" />
-    <PackageReference Include="System.Reactive" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Build" Version="18.0.2" ExcludeAssets="runtime"/>
+    <PackageReference Include="Microsoft.Build.Locator" Version="1.11.2"/>
+    <PackageReference Include="Spectre.Console.Cli" Version="0.57.2" />
+    <PackageReference Include="System.Reactive" Version="7.0.0" />
   </ItemGroup>
 
 </Project>
