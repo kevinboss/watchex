@@ -15,6 +15,7 @@ These files are then observed and if any changes are detected, they are copied t
 
 - [Installation](#installation)
 - [Usage](#usage)
+- [Credits](#credits)
 - [License](#license)
 
 ## Installation
@@ -45,6 +46,10 @@ OPTIONS:
     -V, --version              Prints version information
     -p, --project <PROJECT>    Path to the project file. Defaults to the first *.csproj file found in the current directory
 ```
+
+## Credits
+
+watchex was created by [Francisco Metzger](https://github.com/francWhite) and is maintained by [@kevinboss](https://github.com/kevinboss).
 
 ## License
 
