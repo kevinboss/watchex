@@ -2,9 +2,9 @@
 
 # watchex
 
-[![CI](https://github.com/francWhite/watchex/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/francWhite/watchex/actions/workflows/ci.yml)
-[![GitHub release](https://img.shields.io/github/v/release/francWhite/watchex)](https://github.com/francWhite/watchex/releases)
-[![licence](https://img.shields.io/github/license/francWhite/watchex)](https://github.com/francWhite/watchex/blob/main/LICENSE)
+[![CI](https://github.com/kevinboss/watchex/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/kevinboss/watchex/actions/workflows/ci.yml)
+[![GitHub release](https://img.shields.io/github/v/release/kevinboss/watchex)](https://github.com/kevinboss/watchex/releases)
+[![licence](https://img.shields.io/github/license/kevinboss/watchex)](https://github.com/kevinboss/watchex/blob/main/LICENSE)
 
 Evaluates all files in a given .csproj file, including its dependencies, which are marked as CopyToOutputDirectory "Always" or "PreserveNewest" and thus would be copied to the output directory during the build process.
 These files are then observed and if any changes are detected, they are copied to the output directory. This avoids having to rebuild the project after changes in content files like translations or non standard configurations.
@@ -31,7 +31,7 @@ These files are then observed and if any changes are detected, they are copied t
 
 ### Install manually
 
-Download the latest release from the [releases page](https://github.com/francWhite/watchex/releases), extract the archive to a folder of your choice and add said folder to your PATH environment variable.
+Download the latest release from the [releases page](https://github.com/kevinboss/watchex/releases), extract the archive to a folder of your choice and add said folder to your PATH environment variable.
 
 ## Usage
 
@@ -48,4 +48,4 @@ OPTIONS:
 
 ## License
 
-Distributed under the [MIT license](https://github.com/francWhite/watchex/blob/main/LICENSE)
+Distributed under the [MIT license](https://github.com/kevinboss/watchex/blob/main/LICENSE)
