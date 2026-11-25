@@ -6,51 +6,32 @@
 [![GitHub release](https://img.shields.io/github/v/release/kevinboss/watchex)](https://github.com/kevinboss/watchex/releases)
 [![licence](https://img.shields.io/github/license/kevinboss/watchex)](https://github.com/kevinboss/watchex/blob/main/LICENSE)
 
-Evaluates all files in a given .csproj file, including its dependencies, which are marked as CopyToOutputDirectory "Always" or "PreserveNewest" and thus would be copied to the output directory during the build process.
-These files are then observed and if any changes are detected, they are copied to the output directory. This avoids having to rebuild the project after changes in content files like translations or non standard configurations.
+watchex evaluates a `.csproj` file and its project references for files marked
+with `CopyToOutputDirectory` set to `Always` or `PreserveNewest`. It watches
+those files and copies them to the build output directory whenever they change,
+so you do not need to rebuild the project after editing content files like
+translations or non-standard configurations.
 
-*Why not just use __dotnet watch__?* Even though `dotnet watch` is a great tool, it has its limitations. If you have some non-compiled files in a dependency which are included with a wildcard like `translations\**\*.json`, dotnet watch will not detect changes in these files because their paths are evaluated incorrectly; it will look for them in the startup project directory instead of the dependency in question.
+Install with
+[winget](https://learn.microsoft.com/en-us/windows/package-manager/winget/):
 
-## Table of Contents
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Credits](#credits)
-- [License](#license)
-
-## Installation
-
-### Install using [winget](https://learn.microsoft.com/en-us/windows/package-manager/winget/)
-
-`winget install francWhite.watchex`
-
-### Install using [scoop](https://scoop.sh)
-
-`scoop bucket add maple 'https://github.com/kevinboss/maple.git'`
-
-`scoop install watchex`
-
-### Install manually
-
-Download the latest release from the [releases page](https://github.com/kevinboss/watchex/releases), extract the archive to a folder of your choice and add said folder to your PATH environment variable.
-
-## Usage
-
-```
-USAGE:
-    watchex [OPTIONS]
-
-OPTIONS:
-    -h, --help                 Prints help information
-    -v, --verbose              Prints verbose log output
-    -V, --version              Prints version information
-    -p, --project <PROJECT>    Path to the project file. Defaults to the first *.csproj file found in the current directory
+```powershell
+winget install francWhite.watchex
 ```
 
-## Credits
+Run `watchex` in a project directory, and press Enter to stop:
 
-watchex was created by [Francisco Metzger](https://github.com/francWhite) and is maintained by [@kevinboss](https://github.com/kevinboss).
+```sh
+watchex                            # watch the .csproj in the current directory
+watchex -p src/MyApp/MyApp.csproj  # target a specific project file
+watchex -v                         # log watched files and change events
+```
 
-## License
+See [doc/usage.md](doc/usage.md) for other install methods, all options, and
+how project evaluation works.
 
-Distributed under the [MIT license](https://github.com/kevinboss/watchex/blob/main/LICENSE)
+## How to contribute
+
+Fork the repository and open a pull request against `main`. See
+[CONTRIBUTING.md](CONTRIBUTING.md) for prerequisites, build and test commands,
+code style, and credits.
